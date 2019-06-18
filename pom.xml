@@ -17,7 +17,13 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
+    <!-- fuer mvn release:prepare -->
+	<scm>
+		<developerConnection>scm:git:https://github.com/mc-b/simple-java-maven-app.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+  	
 	<build>
 		<plugins>
 			<plugin>
@@ -54,4 +60,18 @@
 			</plugin>
 		</plugins>
 	</reporting>
+
+	<distributionManagement>
+	   <!--  mvn release:clean release:prepare release:perform erzeugt neuen Release auf github und Artefakt in Nexus Repository -->
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://nexus3:8081/repository/maven-releases/</url>
+		</repository>
+		<!--  mvn deploy erstellt Snapshot in Nexus Repository -->
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://nexus3:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+  	
 </project>
